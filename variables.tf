@@ -35,3 +35,33 @@ variable "instance_type" {
     preprod = "m3.medium"
   }
 }
+
+variable "max_size" {
+  description = "Instance type for the eks worker nodes"
+
+  default = {
+    prod = "3"
+    dev  = "1"
+    preprod = "2"
+  }
+}
+
+variable "desired_capacity" {
+  description = "Instance type for the eks worker nodes"
+
+  default = {
+    prod = "3"
+    dev  = "1"
+    preprod = "2"
+  }
+}
+
+variable "min_size" {
+  description = "Instance type for the eks worker nodes"
+
+  default = {
+    prod = "1"
+    dev  = "1"
+    preprod = "1"
+  }
+}

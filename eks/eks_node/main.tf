@@ -41,10 +41,10 @@ resource "aws_launch_configuration" "terra" {
 }
 
 resource "aws_autoscaling_group" "terra" {
-  desired_capacity     = 1
+  desired_capacity     = "${var.desired_capacity[terraform.workspace]}"
   launch_configuration = "${aws_launch_configuration.terra.id}"
-  max_size             = 2
-  min_size             = 1
+  max_size             = "${var.max_size[terraform.workspace]}"
+  min_size             = "${var.min_size[terraform.workspace]}"
   name                 = "terraform-${terraform.workspace}-eks"
   vpc_zone_identifier  = ["${var.subnets}"]
 
