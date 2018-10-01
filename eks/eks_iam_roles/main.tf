@@ -2,7 +2,7 @@
 #  * IAM Role to allow EKS service to manage other AWS services
 
 resource "aws_iam_role" "cluster" {
-  name = "terraform-eks-cluster"
+  name = "terraform-eks-${terraform.workspace}-cluster"
 
   assume_role_policy = <<POLICY
 {
@@ -34,7 +34,7 @@ resource "aws_iam_role_policy_attachment" "cluster-AmazonEKSServicePolicy" {
 #  * IAM role allowing Kubernetes actions to access other AWS services
 
 resource "aws_iam_role" "node" {
-  name = "terraform-eks-node"
+  name = "terraform-eks-${terraform.workspace}-node"
 
   assume_role_policy = <<POLICY
 {
@@ -68,6 +68,6 @@ resource "aws_iam_role_policy_attachment" "node-AmazonEC2ContainerRegistryReadOn
 }
 
 resource "aws_iam_instance_profile" "node" {
-  name = "terraform-eks-node"
+  name = "terraform-eks-${terraform.workspace}-node"
   role = "${aws_iam_role.node.name}"
 }
