@@ -58,6 +58,7 @@ module "eks_cluster" {
 module "eks_node" {
   source                    = "./eks/eks_node"
   eks_cluster_name          = "${var.eks_cluster_name}"
+  instance_type             = "${var.instance_type}"
   eks_certificate_authority = "${module.eks_cluster.eks_certificate_authority}"
   eks_endpoint              = "${module.eks_cluster.eks_endpoint}"
   iam_instance_profile      = "${module.eks_iam_roles.iam_instance_profile}"

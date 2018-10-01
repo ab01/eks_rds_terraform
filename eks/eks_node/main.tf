@@ -30,8 +30,8 @@ resource "aws_launch_configuration" "terra" {
   associate_public_ip_address = true
   iam_instance_profile        = "${var.iam_instance_profile}"
   image_id                    = "${data.aws_ami.eks-worker.id}"
-  instance_type               = "m5.large"
-  name_prefix                 = "terraform-eks"
+  instance_type = "${var.instance_type[terraform.workspace]}"
+  name_prefix                 = "terraform-${terraform.workspace}-eks"
   key_name                    = "test_access"
   security_groups             = ["${var.security_group_node}"]
 	user_data 									= "${data.template_file.user_data.rendered}"
@@ -45,12 +45,12 @@ resource "aws_autoscaling_group" "terra" {
   launch_configuration = "${aws_launch_configuration.terra.id}"
   max_size             = 2
   min_size             = 1
-  name                 = "terraform-eks"
+  name                 = "terraform-${terraform.workspace}-eks"
   vpc_zone_identifier  = ["${var.subnets}"]
 
   tag {
     key                 = "Name"
-    value               = "terraform-eks"
+    value               = "terraform-${terraform.workspace}-eks"
     propagate_at_launch = true
   }
 

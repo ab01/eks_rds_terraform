@@ -22,3 +22,6 @@ variable "subnets" {
   type = "list"
 }
 
+variable "instance_type" {
+  type = "map"
+}

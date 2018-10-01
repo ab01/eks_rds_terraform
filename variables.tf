@@ -8,7 +8,7 @@ variable "secret_key" {
 
 variable "aws_region" {
   description = "AWS region to launch servers."
-  default     = "us-east-1"
+  default     = "us-west-2"
 }
 
 variable "cidr_block" {
@@ -17,6 +17,7 @@ variable "cidr_block" {
   default = {
     prod = "10.10.0.0/16"
     dev  = "10.20.0.0/16"
+    preprod = "10.30.0.0/16"
   }
 }
 
@@ -25,18 +26,12 @@ variable "eks_cluster_name" {
   default     = "terra"
 }
 
-
-variable "storage_type" {
-  description = "Type of the storage ssd or magnetic"
-  default     = "gp2"
-}
-
-variable "allocated_storage" {
-  description = "ammount of storage allocated in GB"
+variable "instance_type" {
+  description = "Instance type for the eks worker nodes"
 
   default = {
-    prod = "100"
-    dev  = "10"
+    prod = "m4.large"
+    dev  = "t2.medium"
+    preprod = "m3.medium"
   }
 }
-
