@@ -11,6 +11,8 @@ module "vpc" {
   source           = "./network/vpc"
   eks_cluster_name = "${var.eks_cluster_name}"
   cidr_block       = "${var.cidr_block}"
+  aws_region       = "${var.aws_region}"
+  domain_name      = "${var.domain_name}"
 }
 
 # Create Subnets

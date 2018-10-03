@@ -8,8 +8,18 @@ variable "secret_key" {
 
 variable "aws_region" {
   description = "AWS region to launch servers."
-  default     = "us-west-2"
 }
+
+variable "domain_name" {
+  description = "domain name for amazon provided dns in VPC"
+  type = "map"
+  default = {
+    us-west-2 = "us-west-2.compute.internal"
+    us-east-1  = "ec2.internal"
+    eu-west-1 = "eu-west-1.compute.internal"
+  }
+}
+
 
 variable "cidr_block" {
   description = "CIDR for the whole VPC"

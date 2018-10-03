@@ -28,7 +28,8 @@ resource "aws_internet_gateway" "gw_id" {
 
 # Create dhcp option setup
 resource "aws_vpc_dhcp_options" "vpc_dhcp_id" {
-  domain_name         = "us-west-2.compute.internal"
+  #domain_name         = "${var.domain_name}"
+  domain_name         = "${lookup(var.domain_name, var.aws_region)}"
   domain_name_servers = ["AmazonProvidedDNS"]
 
   tags {
