@@ -34,4 +34,4 @@ kubectl apply -f yaml/eks-admin-cluster-role-binding.yaml
 kubectl -n kube-system describe secret \
 $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}') >> token_file_created_run_time.txt
 
-
+kubectl patch storageclass gp2 -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
